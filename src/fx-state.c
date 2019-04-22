@@ -53,6 +53,20 @@ fx_state_show_screen(StateScreen screen)
 void
 fx_state_joypad_input(unsigned long joypad_1_state, unsigned long joypad_2_state)
 {
+    /* The jaguar will sample the joypads as fast as the main loop executes.
+     * We don't want to create a new event every time the loop iterates while
+     * a button is held down, but comparing against the previous state allows
+     * us to convert event into a continuous state. It'll be up to the consumer
+     * functions to maintain whether being held down affects them.
+     */
+    static unsigned long old_joypad_1 = 0;
+    static unsigned long old_joypad_2 = 0;
+
+    joypad_1_state &= ~old_joypad_1;
+    joypad_2_state &= ~old_joypad_2;
+    old_joypad_1 = joypad_1_state;
+    old_joypad_2 = joypad_2_state;
+
     /* If we need to handle system-wide input (e.g.,
      * reset Jaguar via button combination) this is the place
      * to process it. Otherwise, allow the current screen to
