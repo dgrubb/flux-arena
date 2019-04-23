@@ -36,7 +36,8 @@ fx_credits_screen_hide()
 void
 fx_credits_screen_joypad_input(unsigned long joypad_1_state, unsigned long joypad_2_state)
 {
-    if (joypad_1_state | (JOYPAD_A | JOYPAD_B | JOYPAD_C)) {
+    if ((joypad_1_state & (JOYPAD_A | JOYPAD_B | JOYPAD_C)) ||
+        (joypad_2_state & (JOYPAD_A | JOYPAD_B | JOYPAD_C))) {
         fx_state_set_screen(StateTitleScreen, 0);
     }
 }
