@@ -30,6 +30,7 @@
 #include "fx-settings.h"
 
 /* Screen/game content definition */
+#include "fx-credits.h"
 #include "fx-title.h"
 #include "fx-menu.h"
 

@@ -7,6 +7,7 @@ SRCC=flux-arena.c \
 	 fx-physics.c \
 	 fx-state.c \
 	 fx-settings.c \
+	 fx-credits.c \
 	 fx-menu.c \
 	 fx-title.c
 

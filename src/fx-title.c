@@ -166,6 +166,14 @@ void
 fx_title_screen_joypad_input(unsigned long joypad_1_state, unsigned long joypad_2_state)
 {
     int new_option;
+
+    if ((joypad_1_state & JOYPAD_A) || (joypad_1_state & JOYPAD_B) || (joypad_1_state & JOYPAD_C)) {
+        if (g_current_option == TITLE_OPTION_CREDITS) {
+            fx_state_set_screen(StateCreditsScreen, 0);
+            return;
+        }
+    }
+
     if (joypad_1_state & JOYPAD_UP) {
         if (g_current_option == TITLE_OPTION_ONE_PLAYER) {
             new_option = TITLE_OPTION_COUNT - 1;

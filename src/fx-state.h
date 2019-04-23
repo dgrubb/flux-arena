@@ -13,7 +13,8 @@
 
 typedef enum {
     StateTitleScreen = 0,
-    StateMenuScreen
+    StateMenuScreen,
+    StateCreditsScreen
 } StateScreen;
 
 StateScreen g_current_screen;
