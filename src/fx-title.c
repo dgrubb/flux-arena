@@ -8,6 +8,8 @@
 #include "fx-title.h"
 
 extern phrase title_screen;
+extern animation_chunk fx_title_credits_foc_anim;
+
 extern phrase fx_title_single_foc;
 extern phrase fx_title_single_un;
 extern phrase fx_title_two_coop_foc;
@@ -110,6 +112,10 @@ fx_title_screen_init()
             TITLE_OPTION_CREDITS_POS_Y_UNFOCUSED,
             DEPTH16, &fx_title_credits_un);
     g_option_table[TITLE_OPTION_CREDITS].focused = 0;
+    g_option_table[TITLE_OPTION_CREDITS].focused_spr->animation = &fx_title_credits_foc_anim;
+    g_option_table[TITLE_OPTION_CREDITS].focused_spr->animated = 1;
+    g_option_table[TITLE_OPTION_CREDITS].focused_spr->animation_data.counter = 1;
+    g_option_table[TITLE_OPTION_CREDITS].focused_spr->animation_data.index = 0;
 }
 
 void
