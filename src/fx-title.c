@@ -11,6 +11,8 @@ extern phrase title_screen;
 extern animation_chunk fx_title_credits_foc_anim;
 extern animation_chunk fx_title_options_foc_anim;
 extern animation_chunk fx_title_single_foc_anim;
+extern animation_chunk fx_title_twoco_foc_anim;
+extern animation_chunk fx_title_twobat_foc_anim;
 
 extern phrase fx_title_single_foc;
 extern phrase fx_title_single_un;
@@ -76,6 +78,10 @@ fx_title_screen_init()
             TITLE_OPTION_TWO_PLAYER_COOP_POS_Y_UNFOCUSED,
             DEPTH16, &fx_title_two_coop_un);
     g_option_table[TITLE_OPTION_TWO_PLAYER_COOP].focused = 0;
+    g_option_table[TITLE_OPTION_TWO_PLAYER_COOP].focused_spr->animation = &fx_title_twoco_foc_anim;
+    g_option_table[TITLE_OPTION_TWO_PLAYER_COOP].focused_spr->animated = 1;
+    g_option_table[TITLE_OPTION_TWO_PLAYER_COOP].focused_spr->animation_data.counter = 1;
+    g_option_table[TITLE_OPTION_TWO_PLAYER_COOP].focused_spr->animation_data.index = 0;
 
     g_option_table[TITLE_OPTION_TWO_PLAYER_BATTLE].focused_spr = new_sprite(
             TITLE_OPTION_TWO_PLAYER_BATTLE_SIZE_WIDTH_FOCUSED,
@@ -90,6 +96,10 @@ fx_title_screen_init()
             TITLE_OPTION_TWO_PLAYER_BATTLE_POS_Y_UNFOCUSED,
             DEPTH16, &fx_title_two_bat_un);
     g_option_table[TITLE_OPTION_TWO_PLAYER_BATTLE].focused = 0;
+    g_option_table[TITLE_OPTION_TWO_PLAYER_BATTLE].focused_spr->animation = &fx_title_twobat_foc_anim;
+    g_option_table[TITLE_OPTION_TWO_PLAYER_BATTLE].focused_spr->animated = 1;
+    g_option_table[TITLE_OPTION_TWO_PLAYER_BATTLE].focused_spr->animation_data.counter = 1;
+    g_option_table[TITLE_OPTION_TWO_PLAYER_BATTLE].focused_spr->animation_data.index = 0;
 
     g_option_table[TITLE_OPTION_OPTIONS].focused_spr = new_sprite(
             TITLE_OPTION_OPTIONS_SIZE_WIDTH_FOCUSED,
