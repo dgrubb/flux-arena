@@ -3,6 +3,7 @@
 .data
 
 gfx_data	_title_screen,"./gfx/title-screen/fx_title.rgb"
+gfx_data	_marker,"./gfx/title-screen/marker.rgb"
 gfx_data	_fx_title_credits_foc,"./gfx/title-screen/fx_title_credits_foc.rgb"
 gfx_data	_fx_title_credits_un,"./gfx/title-screen/fx_title_credits_un.rgb"
 gfx_data	_fx_title_opt_foc,"./gfx/title-screen/fx_title_opt_foc.rgb"

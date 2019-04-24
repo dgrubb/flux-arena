@@ -8,6 +8,7 @@
 #include "fx-title.h"
 
 extern phrase title_screen;
+extern phrase marker;
 extern animation_chunk fx_title_credits_foc_anim;
 extern animation_chunk fx_title_options_foc_anim;
 extern animation_chunk fx_title_single_foc_anim;
@@ -29,6 +30,13 @@ sprite *g_title_background = 0;
 sprite *g_option_marker = 0;
 int g_current_option = TITLE_OPTION_ONE_PLAYER;
 struct TitleOptionElement g_option_table[] = { {0}, {0}, {0}, {0}, {0} };
+struct TitleMarkerCoordinates g_option_marker_table[] = {
+    { TITLE_MARKER_POS_X_ONE_PLAYER, TITLE_MARKER_POS_Y_ONE_PLAYER },
+    { TITLE_MARKER_POS_X_TWO_PLAYER_COOP, TITLE_MARKER_POS_Y_TWO_PLAYER_COOP },
+    { TITLE_MARKER_POS_X_TWO_PLAYER_BATTLE, TITLE_MARKER_POS_Y_TWO_PLAYER_BATTLE },
+    { TITLE_MARKER_POS_X_OPTIONS, TITLE_MARKER_POS_Y_OPTIONS },
+    { TITLE_MARKER_POS_X_CREDITS, TITLE_MARKER_POS_Y_CREDITS }
+};
 
 void
 fx_title_screen_init()
@@ -44,7 +52,12 @@ fx_title_screen_init()
     /* Create the marker which appears next to the title
      * screen option which the user is currently focused.
      */
-    //g_option_marker = new_sprite();
+    g_option_marker = new_sprite(
+            TITLE_MARKER_SIZE_WIDTH,
+            TITLE_MARKER_SIZE_HEIGHT,
+            TITLE_MARKER_POS_X_ONE_PLAYER,
+            TITLE_MARKER_POS_Y_ONE_PLAYER,
+            DEPTH16, &marker);
 
     /* Populate all the user options */
     g_option_table[TITLE_OPTION_ONE_PLAYER].focused_spr = new_sprite(
@@ -143,6 +156,7 @@ fx_title_screen_show()
 {
     int i;
     attach_sprite_to_display_at_layer(g_title_background, g_display, 1);
+    attach_sprite_to_display_at_layer(g_option_marker, g_display, 1);
     for (i=0; i<TITLE_OPTION_COUNT; i++) {
         fx_title_focus_element(i, 0);
     }
@@ -162,7 +176,8 @@ fx_title_focus_element(int option, int set_focus)
         detach_sprite_from_display(g_option_table[option].focused_spr);
         attach_sprite_to_display_at_layer(g_option_table[option].unfocused_spr, g_display, 1);
     }
-    /* TODO: update marker */
+    (*g_option_marker).x = g_option_marker_table[option].x;
+    (*g_option_marker).y = g_option_marker_table[option].y;
 }
 
 void
@@ -182,6 +197,7 @@ fx_title_screen_hide()
      */
     int i;
     detach_sprite_from_display(g_title_background);
+    detach_sprite_from_display(g_option_marker);
     for (i=0; i<TITLE_OPTION_COUNT; i++) {
         detach_sprite_from_display(g_option_table[i].focused_spr);
         detach_sprite_from_display(g_option_table[i].unfocused_spr);

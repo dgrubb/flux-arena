@@ -24,9 +24,15 @@ struct TitleOptionElement {
     int focused;
 };
 
+struct TitleMarkerCoordinates {
+    short int x;
+    short int y;
+};
+
 sprite *g_title_background;
 int g_current_option;
 struct TitleOptionElement g_option_table[TITLE_OPTION_COUNT];
+struct TitleMarkerCoordinates g_option_marker_table[TITLE_OPTION_COUNT];
 sprite *g_option_marker;
 
 void fx_title_screen_init();
@@ -35,6 +41,19 @@ void fx_title_screen_hide();
 void fx_title_focus_element(int option, int set_focus);
 void fx_title_update_selection(int option);
 void fx_title_screen_joypad_input(unsigned long joypad_1_state, unsigned long joypad_2_state);
+
+#define TITLE_MARKER_SIZE_WIDTH 12
+#define TITLE_MARKER_SIZE_HEIGHT 12
+#define TITLE_MARKER_POS_X_ONE_PLAYER 98
+#define TITLE_MARKER_POS_Y_ONE_PLAYER 64
+#define TITLE_MARKER_POS_X_TWO_PLAYER_COOP 84
+#define TITLE_MARKER_POS_Y_TWO_PLAYER_COOP 92
+#define TITLE_MARKER_POS_X_TWO_PLAYER_BATTLE 83
+#define TITLE_MARKER_POS_Y_TWO_PLAYER_BATTLE 122
+#define TITLE_MARKER_POS_X_OPTIONS 116
+#define TITLE_MARKER_POS_Y_OPTIONS 152
+#define TITLE_MARKER_POS_X_CREDITS 119
+#define TITLE_MARKER_POS_Y_CREDITS 182
 
 #define TITLE_OPTION_ONE_PLAYER_SIZE_WIDTH_UNFOCUSED         92
 #define TITLE_OPTION_ONE_PLAYER_SIZE_HEIGHT_UNFOCUSED        16
