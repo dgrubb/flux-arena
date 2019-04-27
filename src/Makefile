@@ -9,7 +9,8 @@ SRCC=flux-arena.c \
 	 fx-settings.c \
 	 fx-credits.c \
 	 fx-menu.c \
-	 fx-title.c
+	 fx-title.c \
+	 fx-arena-1.c
 
 SRCS=
 SRCH=

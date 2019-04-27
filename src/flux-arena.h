@@ -33,5 +33,6 @@
 #include "fx-credits.h"
 #include "fx-title.h"
 #include "fx-menu.h"
+#include "fx-arena.h"
 
 #endif /* FLUX_ARENA_H_ */
